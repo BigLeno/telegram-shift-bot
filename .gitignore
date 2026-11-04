@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ruff_cache/
+
+# Configuração e segredos
+.env
+secrets/
+client_secret*.json
+token*.json
+
+# Dados em execução
+data/
+
+# Editores e sistema
+.vscode/
+.idea/
+.DS_Store

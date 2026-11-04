@@ -1,0 +1,22 @@
+# Serviço systemd para manter o bot rodando e reiniciar após falhas ou reboot.
+# Instalação (ajuste User e os caminhos):
+#   sudo cp deploy/shift-bot.service /etc/systemd/system/
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable --now shift-bot
+#   journalctl -u shift-bot -f
+[Unit]
+Description=Bot de plantão no Telegram
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=shiftbot
+WorkingDirectory=/opt/shift-bot
+ExecStart=/opt/shift-bot/.venv/bin/python -m bot
+Restart=on-failure
+RestartSec=10
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target
